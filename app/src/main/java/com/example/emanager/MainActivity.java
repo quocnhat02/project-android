@@ -20,7 +20,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolBar);
         getSupportActionBar().setTitle("Transactions");
 
-
+        binding.floatingActionButton.setOnClickListener(c -> {
+            new AddTransactionFragment().show(getSupportFragmentManager(), null);
+        });
     }
 
     @Override
