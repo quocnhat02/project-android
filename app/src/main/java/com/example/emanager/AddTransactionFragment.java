@@ -1,5 +1,6 @@
 package com.example.emanager;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -43,6 +44,14 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
             binding.expenseBtn.setBackground(getContext().getDrawable(R.drawable.expense_selector));
             binding.expenseBtn.setTextColor(getContext().getColor(R.color.textColor));
             binding.incomeBtn.setTextColor(getContext().getColor(R.color.redColor));
+        });
+
+        binding.date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext());
+                datePickerDialog.show();
+            }
         });
 
         return binding.getRoot();
