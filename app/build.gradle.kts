@@ -6,6 +6,10 @@ android {
     namespace = "com.example.emanager"
     compileSdk = 34
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.emanager"
         minSdk = 24
