@@ -8,9 +8,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
 
 import com.example.emanager.databinding.FragmentAddTransactionBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class AddTransactionFragment extends BottomSheetDialogFragment {
 
@@ -50,6 +55,17 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext());
+                datePickerDialog.setOnDateSetListener((datePicker, i, i1, i2) -> {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
+                    calendar.set(Calendar.MONTH, datePicker.getMonth());
+                    calendar.set(Calendar.YEAR, datePicker.getYear());
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy");
+                    String dateToShow = dateFormat.format(calendar.getTime());
+
+                    binding.date.setText(dateToShow);
+                });
                 datePickerDialog.show();
             }
         });
