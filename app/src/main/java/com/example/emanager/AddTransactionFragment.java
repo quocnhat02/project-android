@@ -31,6 +31,20 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
                              Bundle savedInstanceState) {
         binding = FragmentAddTransactionBinding.inflate(inflater);
 
+        binding.incomeBtn.setOnClickListener(view -> {
+            binding.incomeBtn.setBackground(getContext().getDrawable(R.drawable.income_selector));
+            binding.expenseBtn.setBackground(getContext().getDrawable(R.drawable.default_selector));
+            binding.expenseBtn.setTextColor(getContext().getColor(R.color.textColor));
+            binding.incomeBtn.setTextColor(getContext().getColor(R.color.greenColor));
+        });
+
+        binding.expenseBtn.setOnClickListener(view -> {
+            binding.incomeBtn.setBackground(getContext().getDrawable(R.drawable.default_selector));
+            binding.expenseBtn.setBackground(getContext().getDrawable(R.drawable.expense_selector));
+            binding.expenseBtn.setTextColor(getContext().getColor(R.color.textColor));
+            binding.incomeBtn.setTextColor(getContext().getColor(R.color.redColor));
+        });
+
         return binding.getRoot();
     }
 }

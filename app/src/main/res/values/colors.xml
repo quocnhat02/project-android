@@ -5,4 +5,7 @@
     <color name="orangeDark">#A82800</color>
 
     <color name="orange">#FF5722</color>
+    <color name="textColor">#353535</color>
+    <color name="greenColor">#40AC44</color>
+    <color name="redColor">#C50A0A</color>
 </resources>
