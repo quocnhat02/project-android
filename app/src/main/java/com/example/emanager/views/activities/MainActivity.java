@@ -1,13 +1,13 @@
-package com.example.linearlayout.views.activities;
+package com.example.emanager.views.activities;
 
 import android.os.Bundle;
 import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.linearlayout.views.fragments.AddTransactionFragment;
-import com.example.linearlayout.R;
-import com.example.linearlayout.databinding.ActivityMainBinding;
+import com.example.emanager.views.fragments.AddTransactionFragment;
+import com.example.emanager.R;
+import com.example.emanager.databinding.ActivityMainBinding;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
