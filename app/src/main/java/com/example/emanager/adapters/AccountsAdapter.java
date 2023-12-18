@@ -1,4 +1,4 @@
-package com.example.linearlayout.adapters;
+package com.example.emanager.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.linearlayout.R;
-import com.example.linearlayout.databinding.RowAccountBinding;
-import com.example.linearlayout.models.Account;
+import com.example.emanager.R;
+import com.example.emanager.databinding.RowAccountBinding;
+import com.example.emanager.models.Account;
 
 import java.util.ArrayList;
 
