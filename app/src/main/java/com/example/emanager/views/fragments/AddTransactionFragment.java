@@ -1,4 +1,4 @@
-package com.example.linearlayout.views.fragments;
+package com.example.emanager.views.fragments;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -15,13 +15,13 @@ import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 
-import com.example.linearlayout.R;
-import com.example.linearlayout.adapters.AccountsAdapter;
-import com.example.linearlayout.adapters.CategoryAdapter;
-import com.example.linearlayout.databinding.FragmentAddTransactionBinding;
-import com.example.linearlayout.databinding.ListDialogBinding;
-import com.example.linearlayout.models.Account;
-import com.example.linearlayout.models.Category;
+import com.example.emanager.R;
+import com.example.emanager.adapters.AccountsAdapter;
+import com.example.emanager.adapters.CategoryAdapter;
+import com.example.emanager.databinding.FragmentAddTransactionBinding;
+import com.example.emanager.databinding.ListDialogBinding;
+import com.example.emanager.models.Account;
+import com.example.emanager.models.Category;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.text.SimpleDateFormat;
