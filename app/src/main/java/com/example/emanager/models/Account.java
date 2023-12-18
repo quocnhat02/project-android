@@ -1,4 +1,4 @@
-package com.example.linearlayout.models;
+package com.example.emanager.models;
 
 public class Account {
     private double accountAmount;
