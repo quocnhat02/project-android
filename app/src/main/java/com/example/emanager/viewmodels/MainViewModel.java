@@ -1,4 +1,4 @@
-package com.example.linearlayout.viewmodels;
+package com.example.emanager.viewmodels;
 
 import android.app.Application;
 
@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.linearlayout.models.Transaction;
-import com.example.linearlayout.utils.Constants;
+import com.example.emanager.models.Transaction;
+import com.example.emanager.utils.Constants;
 
 import java.util.Calendar;
 import java.util.Date;
