@@ -19,9 +19,13 @@ import com.example.emanager.R;
 import com.example.emanager.adapters.AccountsAdapter;
 import com.example.emanager.adapters.CategoryAdapter;
 import com.example.emanager.databinding.FragmentAddTransactionBinding;
-import com.example.emanager.databinding.ListDialogBinding;
+import com.example.emanager.atabinding.ListDialogBinding;
 import com.example.emanager.models.Account;
 import com.example.emanager.models.Category;
+import com.example.emanager.models.Transaction;
+import com.example.emanager.utils.Constants;
+import com.example.emanager.utils.Helper;
+import com.example.emanager.views.activities.MainActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.text.SimpleDateFormat;
@@ -42,17 +46,22 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
     }
 
     FragmentAddTransactionBinding binding;
+    Transaction transaction;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentAddTransactionBinding.inflate(inflater);
 
+        transaction = new Transaction();
+
         binding.incomeBtn.setOnClickListener(view -> {
             binding.incomeBtn.setBackground(getContext().getDrawable(R.drawable.income_selector));
             binding.expenseBtn.setBackground(getContext().getDrawable(R.drawable.default_selector));
             binding.expenseBtn.setTextColor(getContext().getColor(R.color.textColor));
             binding.incomeBtn.setTextColor(getContext().getColor(R.color.greenColor));
+
+            transaction.setType(Constants.INCOME);
         });
 
         binding.expenseBtn.setOnClickListener(view -> {
@@ -60,6 +69,8 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
             binding.expenseBtn.setBackground(getContext().getDrawable(R.drawable.expense_selector));
             binding.expenseBtn.setTextColor(getContext().getColor(R.color.textColor));
             binding.incomeBtn.setTextColor(getContext().getColor(R.color.redColor));
+
+            transaction.setType(Constants.EXPENSE);
         });
 
         binding.date.setOnClickListener(new View.OnClickListener() {
@@ -72,10 +83,14 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
                     calendar.set(Calendar.MONTH, datePicker.getMonth());
                     calendar.set(Calendar.YEAR, datePicker.getYear());
 
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy");
-                    String dateToShow = dateFormat.format(calendar.getTime());
+//                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy");
+                    String dateToShow = Helper.formatDate(calendar.getTime());
 
                     binding.date.setText(dateToShow);
+
+                    transaction.setDate(calendar.getTime());
+                    transaction.setId(calendar.getTime().getTime());
+
                 });
                 datePickerDialog.show();
             }
@@ -86,18 +101,13 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
             AlertDialog categoryDialog = new AlertDialog.Builder(getContext()).create();
             categoryDialog.setView(dialogBinding.getRoot());
 
-            ArrayList<Category> categories = new ArrayList<>();
-            categories.add(new Category("Salary", R.drawable.ic_salary, R.color.category1));
-            categories.add(new Category("Business", R.drawable.ic_business, R.color.category2));
-            categories.add(new Category("Investment", R.drawable.ic_investment, R.color.category3));
-            categories.add(new Category("Loan", R.drawable.ic_loan, R.color.category4));
-            categories.add(new Category("Rent", R.drawable.ic_rent, R.color.category5));
-            categories.add(new Category("Other", R.drawable.ic_other, R.color.category6));
 
-            CategoryAdapter categoryAdapter = new CategoryAdapter(getContext(), categories, new CategoryAdapter.CategoryClickListener() {
+
+            CategoryAdapter categoryAdapter = new CategoryAdapter(getContext(), Constants.categories, new CategoryAdapter.CategoryClickListener() {
                 @Override
                 public void onCategoryClicked(Category category) {
                     binding.category.setText(category.getCategoryName());
+                    transaction.setCategory(category.getCategoryName());
                     categoryDialog.dismiss();
                 }
             });
@@ -123,6 +133,7 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
                 @Override
                 public void onAccountSelected(Account account) {
                     binding.account.setText(account.getAccountName());
+                    transaction.setAccount(account.getAccountName());
                     accountsDialog.dismiss();
                 }
             });
@@ -131,6 +142,24 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
             dialogBinding.recyclerView.setAdapter(adapter);
 
             accountsDialog.show();
+        });
+
+        binding.saveTransactionBtn.setOnClickListener(c -> {
+            double amount = Double.parseDouble(binding.amount.getText().toString());
+            String note = binding.note.getText().toString();
+
+            if(transaction.getType().equals(Constants.EXPENSE)){
+                transaction.setAmount(amount*-1);
+            }else{
+                transaction.setAmount(amount);
+            }
+            transaction.setNote(note);
+
+            ((MainActivity)getActivity()).viewModel.addTransactions(transaction);
+
+            ((MainActivity)getActivity()).getTransactions();
+
+            dismiss();
         });
 
         return binding.getRoot();
