@@ -1,6 +1,6 @@
-package com.example.linearlayout.adapters;
+package com.example.emanager.adapters;
 
-import com.example.linearlayout.R;
+import com.example.emanager.R;
 
 
 import android.app.AlertDialog;
@@ -13,12 +13,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.linearlayout.databinding.RowTransactionBinding;
-import com.example.linearlayout.models.Category;
-import com.example.linearlayout.models.Transaction;
-import com.example.linearlayout.utils.Constants;
-import com.example.linearlayout.utils.Helper;
-import com.example.linearlayout.views.activities.MainActivity;
+import com.example.emanager.databinding.RowTransactionBinding;
+import com.example.emanager.models.Category;
+import com.example.emanager.models.Transaction;
+import com.example.emanager.utils.Constants;
+import com.example.emanager.utils.Helper;
+import com.example.emanager.views.activities.MainActivity;
 
 import java.util.ArrayList;
 
