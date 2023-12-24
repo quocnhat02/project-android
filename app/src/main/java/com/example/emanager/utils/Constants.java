@@ -1,7 +1,7 @@
-package com.example.linearlayout.utils;
+package com.example.emanager.utils;
 
-import com.example.linearlayout.R;
-import com.example.linearlayout.models.Category;
+import com.example.emanager.R;
+import com.example.emanager.models.Category;
 
 import java.util.ArrayList;
 
