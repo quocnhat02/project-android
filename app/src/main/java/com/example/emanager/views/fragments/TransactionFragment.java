@@ -1,4 +1,4 @@
-package com.example.linearlayout.views.fragments;
+package com.example.emanager.views.fragments;
 
 import android.os.Bundle;
 
@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.linearlayout.R;
-import com.example.linearlayout.databinding.FragmentAddTransactionBinding;
+import com.example.emanager.R;
+import com.example.emanager.databinding.FragmentAddTransactionBinding;
 
 
 public class TransactionFragment extends Fragment {
