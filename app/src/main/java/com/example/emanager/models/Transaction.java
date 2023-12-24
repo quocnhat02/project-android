@@ -1,4 +1,4 @@
-package com.example.linearlayout.models;
+package com.example.emanager.models;
 
 import java.util.Date;
 
