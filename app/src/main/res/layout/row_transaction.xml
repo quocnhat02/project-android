@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
             android:text="Business"
-            android:textColor="@color/black"
+            android:textColor="#f7df1d"
             android:textStyle="bold" />
 
         <LinearLayout
