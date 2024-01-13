@@ -2,6 +2,7 @@ package com.example.emanager.views.fragments;
 
 import static com.example.emanager.utils.Constants.SELECTED_STATS_TYPE;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -105,6 +106,30 @@ public class StatsFragment extends Fragment {
             updateDate();
         });
 
+
+
+
+// In the onCreateView method, replace the existing code for the DatePickerDialog listener
+        binding.currentDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext());
+                datePickerDialog.setOnDateSetListener((datePicker, i, i1, i2) -> {
+                    calendar.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
+                    calendar.set(Calendar.MONTH, datePicker.getMonth());
+                    calendar.set(Calendar.YEAR, datePicker.getYear());
+
+                    // Set the new date in the currentDate TextView
+                    setCurrentDate(calendar);
+
+                    // Update the UI with the new date
+                    updateDate();
+                });
+                datePickerDialog.show();
+            }
+        });
+
+
         binding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -198,6 +223,14 @@ public class StatsFragment extends Fragment {
         return binding.getRoot();
     }
 
+    private void setCurrentDate(Calendar calendar) {
+        if (Constants.SELECTED_TAB_STATS == Constants.DAILY) {
+            binding.currentDate.setText(Helper.formatDate(calendar.getTime()));
+        } else if (Constants.SELECTED_TAB_STATS == Constants.MONTHLY) {
+            binding.currentDate.setText(Helper.formatDateByMonth(calendar.getTime()));
+        }
+    }
+
     void updateDate() {
         if(Constants.SELECTED_TAB_STATS == Constants.DAILY) {
             binding.currentDate.setText(Helper.formatDate(calendar.getTime()));
@@ -206,4 +239,17 @@ public class StatsFragment extends Fragment {
         }
         viewModel.getTransactions(calendar, SELECTED_STATS_TYPE);
     }
+
+//    private void setCurrentDate(Calendar calendar) {
+//        if (Constants.SELECTED_TAB == Constants.DAILY) {
+//            binding.currentDate.setText(Helper.formatDate(calendar.getTime()));
+//        } else if (Constants.SELECTED_TAB == Constants.MONTHLY) {
+//            binding.currentDate.setText(Helper.formatDateByMonth(calendar.getTime()));
+//        }
+//    }
+//
+//    void updateDate() {
+//        setCurrentDate(calendar);
+//        viewModel.getTransactions(calendar);
+//    }
 }
